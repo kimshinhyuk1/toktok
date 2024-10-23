@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/static/socket.io.js"></script>
+    <title>실시간 채팅</title>
+    <!-- Socket.IO 클라이언트 라이브러리 -->
+    <style>
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      #messages li {
+        padding: 8px;
+        background: #f0f0f0;
+        margin-bottom: 10px;
+      }
+      .chatbot {
+        color: blue; /* 챗봇 메시지는 파란색으로 표시 */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>실시간 채팅</h1>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>전송</button>
+    </form>
+
+    <script>
+      // 서버와 연결 시도
+      const socket = io();
+
+      // 연결 성공 시
+      socket.on('connect', () => {
+        console.log('연결 성공');
+      });
+
+      // 연결 끊김 시
+      socket.on('disconnect', () => {
+        console.log('연결 끊김');
+      });
+
+      // 연결 오류 시
+      socket.on('connect_error', (err) => {
+        console.error('연결 오류:', err);
+      });
+
+      // 메시지 전송
+      document.getElementById('form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const input = document.getElementById('input');
+        if (input.value) {
+          socket.emit('chat message', input.value);
+          input.value = '';
+        }
+      });
+
+      // 사용자 메시지 수신
+      socket.on('chat message', function (msg) {
+        const item = document.createElement('li');
+        item.textContent = '사용자: ' + msg;
+        document.getElementById('messages').appendChild(item);
+      });
+
+      // 챗봇 응답 메시지 수신
+      socket.on('chatbot message', function (msg) {
+        const item = document.createElement('li');
+        item.textContent = '챗봇: ' + msg;
+        item.classList.add('chatbot'); // 챗봇 메시지에 클래스 적용
+        document.getElementById('messages').appendChild(item);
+      });
+    </script>
+  </body>
+</html>

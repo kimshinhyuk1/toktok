@@ -1,0 +1,22 @@
+git config --global user.name "kim"
+git config --global user.email "audehdqlffk@naver.com"
+git config --global core.editor "code --wait" # VSCode를 기본 에디터로 설정 (다른 에디터도 가능)
+git config --global merge.tool "vimdiff" # 기본 머지 툴 설정
+
+# Node 모듈
+node_modules/
+
+# 환경 설정 파일
+.env
+
+# Firebase 관련 설정 파일
+firebase.json
+firestore.rules
+firestore.indexes.json
+
+# OS 관련 파일
+.DS_Store
+
+# 로그 파일
+*.log
+npm-debug.log*
