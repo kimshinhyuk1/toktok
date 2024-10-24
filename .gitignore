@@ -1,1 +1,20 @@
-node_modules
+# Node 모듈 무시
+node_modules/
+
+# 환경 설정 파일 무시
+.env
+
+# Firebase 관련 설정 파일 무시
+firebase.json
+firestore.rules
+firestore.indexes.json
+
+# OS 관련 파일 무시
+.DS_Store
+
+# 로그 파일 무시
+*.log
+npm-debug.log*
+
+# 보안을 위한 서비스 계정 키 파일 무시
+config/serviceAccountKey.json
