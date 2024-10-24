@@ -20,3 +20,13 @@ firestore.indexes.json
 # 로그 파일
 *.log
 npm-debug.log*
+
+
+[core]
+    editor = code --wait
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    lg = log --oneline --graph --all

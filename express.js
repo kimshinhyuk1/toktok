@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
 const userRoutes = require('./routes/userRoutes'); // 사용자 라우트 불러오기
+const serviceAccount = require('./config/serviceAccountKey.json');
 
 dotenv.config();
 

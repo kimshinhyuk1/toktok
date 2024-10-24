@@ -1,5 +1,3 @@
-// userRoutes.js 파일
-
 const express = require('express');
 const router = express.Router();
 const userController = require('../controller/userController'); // 상대 경로로 수정
@@ -18,5 +16,11 @@ router.put('/:id', userController.updateUser);
 
 // 사용자 삭제
 router.delete('/:id', userController.deleteUser);
+
+// 사용자 프로필 조회
+router.get('/profile/:userId', userController.getUserProfile);
+
+// 사용자 프로필 수정
+router.put('/profile/:userId', userController.updateUserProfile);
 
 module.exports = router;
